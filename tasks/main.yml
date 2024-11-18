@@ -53,3 +53,10 @@
         regexp: "^#?OUTPUTDIR="
         line: "OUTPUTDIR={{ abcde_vars.OUTPUTDIR }}"
       when: abcde_vars.OUTPUTDIR is defined
+
+    - name: CONFIGURE | Ensure OUTPUTTYPE is configured
+      ansible.builtin.lineinfile:
+        path: "{{ abcde_config }}"
+        regexp: "^#?OUTPUTTYPE="
+        line: "OUTPUTTYPE={{ abcde_vars.OUTPUTTYPE }}"
+      when: abcde_vars.OUTPUTTYPE is defined
