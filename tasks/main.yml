@@ -60,6 +60,13 @@
         line: "OUTPUTDIR={{ abcde_vars.OUTPUTDIR }}"
       when: abcde_vars.OUTPUTDIR is defined
 
+    - name: CONFIGURE | Ensure WAVOUTPUTDIR is configured
+      ansible.builtin.lineinfile:
+        path: "{{ abcde_config }}"
+        regexp: "^#?WAVOUTPUTDIR="
+        line: "WAVOUTPUTDIR={{ abcde_vars.WAVOUTPUTDIR }}"
+      when: abcde_vars.WAVOUTPUTDIR is defined
+
     - name: CONFIGURE | Ensure OUTPUTTYPE is configured
       ansible.builtin.lineinfile:
         path: "{{ abcde_config }}"
