@@ -1,2 +1,5 @@
 ---
 abcde_config: "{{ ansible_user_dir }}/.abcde.conf"
+ABCDE_ALIASES: "{{ SHELL.ALIAS_DIR }}/.bash_aliases"
+SHELL:
+  ALIAS_DIR: "{{ ansible_user_dir }}"
