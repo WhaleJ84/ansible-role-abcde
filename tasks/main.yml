@@ -39,3 +39,10 @@
         regexp: "^#?KEEPWAVS="
         line: "KEEPWAVS=\"{{ abcde_vars.KEEPWAVS }}\""
       when: abcde_vars.KEEPWAVS is defined
+
+    - name: CONFIGURE | Ensure CDROM is configured
+      ansible.builtin.lineinfile:
+        path: "{{ abcde_config }}"
+        regexp: "^#?CDROM="
+        line: "CDROM={{ abcde_vars.CDROM }}"
+      when: abcde_vars.CDROM is defined
