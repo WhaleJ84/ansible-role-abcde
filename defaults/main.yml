@@ -1,0 +1,2 @@
+---
+abcde_config: "{{ ansible_user_dir }}/.abcde.conf"
