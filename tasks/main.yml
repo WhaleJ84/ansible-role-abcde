@@ -78,7 +78,7 @@
       ansible.builtin.lineinfile:
         path: "{{ abcde_config }}"
         regexp: "^#?OUTPUTFORMAT="
-        line: "OUTPUTFORMAT=\"{{ abcde_vars.OUTPUTFORMAT }}\""
+        line: "OUTPUTFORMAT='{{ abcde_vars.OUTPUTFORMAT }}'"
       when: abcde_vars.OUTPUTFORMAT is defined
 
     - name: CONFIGURE | Ensure mungefilename is configured
