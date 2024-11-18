@@ -60,3 +60,19 @@
         regexp: "^#?OUTPUTTYPE="
         line: "OUTPUTTYPE={{ abcde_vars.OUTPUTTYPE }}"
       when: abcde_vars.OUTPUTTYPE is defined
+
+    - name: CONFIGURE | Ensure OUTPUTFORMAT is configured
+      ansible.builtin.lineinfile:
+        path: "{{ abcde_config }}"
+        regexp: "^#?OUTPUTFORMAT="
+        line: "OUTPUTFORMAT=\"{{ abcde_vars.OUTPUTFORMAT }}\""
+      when: abcde_vars.OUTPUTFORMAT is defined
+
+    - name: CONFIGURE | Ensure mungefilename is configured
+      ansible.builtin.lineinfile:
+        path: "{{ abcde_config }}"
+        regexp: "^#mungefilename ()"
+        firstmatch: True
+        insertbefore: "regex"
+        line: "mungefilename (){ {{ abcde_vars.MUNGEFILENAME | regex_replace('[\\r\\n]+', '') }} }"
+      when: abcde_vars.MUNGEFILENAME is defined
