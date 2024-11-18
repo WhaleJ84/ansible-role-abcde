@@ -76,3 +76,10 @@
         insertbefore: "regex"
         line: "mungefilename (){ {{ abcde_vars.MUNGEFILENAME | regex_replace('[\\r\\n]+', '') }} }"
       when: abcde_vars.MUNGEFILENAME is defined
+
+    - name: CONFIGURE | Ensure EJECTCD is configured
+      ansible.builtin.lineinfile:
+        path: "{{ abcde_config }}"
+        regexp: "^#?EJECTCD="
+        line: "EJECTCD={{ abcde_vars.EJECTCD }}"
+      when: abcde_vars.EJECTCD is defined
