@@ -16,6 +16,14 @@ roles:
     scm: git
 ```
 
+Role Variables
+--------------
+
+| Name | Type | Description | Default |
+| ---- | ---- | ----------- | ------- |
+| abcde\_config | string | A filepath to the abcde configuration file. | $HOME/.abcde.conf |
+| abcde\_vars |  |  | None |
+
 Example Playbook
 ----------------
 
