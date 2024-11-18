@@ -32,3 +32,10 @@
         regexp: "^#?CDDBLOCALDIR="
         line: "CDDBLOCALDIR=\"{{ abcde_vars.CDDBLOCALDIR }}\""
       when: abcde_vars.CDDBLOCALDIR is defined
+
+    - name: CONFIGURE | Ensure KEEPWAVS is configured
+      ansible.builtin.lineinfile:
+        path: "{{ abcde_config }}"
+        regexp: "^#?KEEPWAVS="
+        line: "KEEPWAVS=\"{{ abcde_vars.KEEPWAVS }}\""
+      when: abcde_vars.KEEPWAVS is defined
