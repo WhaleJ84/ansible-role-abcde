@@ -1,5 +1,5 @@
 ---
-- name: INSTALL abcde
+- name: INSTALL | abcde
   tags:
     - install
   block:
@@ -8,3 +8,19 @@
       ansible.builtin.apt:
         name: abcde
         state: present
+
+- name: CONFIGURE | abcde
+  tags:
+    - configure
+  block:
+    - name: CONFIGURE | Ensure custom configuration path exists
+      ansible.builtin.file:
+        path: "{{ abcde_config | dirname }}"
+        state: directory
+      when: abcde_vars is defined
+
+    - name: CONFIGURE | Ensure custom configurarion file exists
+      ansible.builtin.copy:
+        src: /etc/abcde.conf
+        dest: "{{ abcde_config }}"
+      when: abcde_vars is defined
