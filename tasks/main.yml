@@ -96,3 +96,18 @@
         regexp: "^#?EJECTCD="
         line: "EJECTCD={{ abcde_vars.EJECTCD }}"
       when: abcde_vars.EJECTCD is defined
+
+    - name: CONFIGURE | Ensure aliases directory is present
+      ansible.builtin.file:
+        path: "{{ SHELL.ALIAS_DIR | dirname }}"
+        state: directory
+      when: SHELL.ALIAS_DIR is defined
+
+    - name: CONFIGURE | Ensure abcde aliases are configured
+      with_dict: "{{ abcde_vars.aliases }}"
+      when: ABCDE_ALIASES is defined
+      ansible.builtin.lineinfile:
+        path: "{{ ABCDE_ALIASES }}"
+        regexp: "^alias abcde="
+        create: True
+        line: "alias {{ item.key }}=\"{{ item.value }}\""
