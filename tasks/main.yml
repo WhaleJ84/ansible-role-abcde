@@ -46,3 +46,10 @@
         regexp: "^#?CDROM="
         line: "CDROM={{ abcde_vars.CDROM }}"
       when: abcde_vars.CDROM is defined
+
+    - name: CONFIGURE | Ensure OUTPUTDIR is configured
+      ansible.builtin.lineinfile:
+        path: "{{ abcde_config }}"
+        regexp: "^#?OUTPUTDIR="
+        line: "OUTPUTDIR={{ abcde_vars.OUTPUTDIR }}"
+      when: abcde_vars.OUTPUTDIR is defined
