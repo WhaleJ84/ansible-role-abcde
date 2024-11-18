@@ -23,4 +23,12 @@
       ansible.builtin.copy:
         src: /etc/abcde.conf
         dest: "{{ abcde_config }}"
+        force: False
       when: abcde_vars is defined
+
+    - name: CONFIGURE | Ensure CDDBLOCALDIR is configured
+      ansible.builtin.lineinfile:
+        path: "{{ abcde_config }}"
+        regexp: "^#?CDDBLOCALDIR="
+        line: "CDDBLOCALDIR=\"{{ abcde_vars.CDDBLOCALDIR }}\""
+      when: abcde_vars.CDDBLOCALDIR is defined
