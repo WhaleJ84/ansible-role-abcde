@@ -9,6 +9,12 @@
         name: abcde
         state: present
 
+    - name: INSTALL | Ensure fdkaac is installed
+      become: True
+      ansible.builtin.apt:
+        name: fdkaac
+        state: present
+
 - name: CONFIGURE | abcde
   tags:
     - configure
@@ -37,7 +43,7 @@
       ansible.builtin.lineinfile:
         path: "{{ abcde_config }}"
         regexp: "^#?KEEPWAVS="
-        line: "KEEPWAVS=\"{{ abcde_vars.KEEPWAVS }}\""
+        line: "KEEPWAVS={{ abcde_vars.KEEPWAVS }}"
       when: abcde_vars.KEEPWAVS is defined
 
     - name: CONFIGURE | Ensure CDROM is configured
