@@ -9,6 +9,14 @@
         name: abcde
         state: present
 
+    - name: INSTALL | Ensure format packages are installed
+      become: True
+      ansible.builtin.apt:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - flac
+
     - name: INSTALL | Ensure fdkaac is installed
       become: True
       ansible.builtin.apt:
