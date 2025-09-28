@@ -92,7 +92,7 @@
     - name: CONFIGURE | Ensure mungefilename is configured
       ansible.builtin.lineinfile:
         path: "{{ abcde_config }}"
-        regexp: "^#mungefilename ()"
+        regexp: "^[#]?mungefilename"
         firstmatch: True
         insertbefore: "regex"
         line: "mungefilename (){ {{ abcde_vars.MUNGEFILENAME | regex_replace('[\\r\\n]+', '') }} }"
