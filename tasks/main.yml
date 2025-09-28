@@ -9,6 +9,10 @@
         name: abcde
         state: present
 
+    - name: BLOCK | Include ARM related packages if required
+      when: ansible_facts['architecture'] == 'aarch64'
+      include_tasks: arm.yml
+
     - name: INSTALL | Ensure format packages are installed
       become: True
       ansible.builtin.apt:

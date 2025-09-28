@@ -1,0 +1,7 @@
+---
+- name: Update apt with insecure repositories
+  become: true
+  ansible.builtin.apt:
+    update_cache: true
+    dpkg_options: '-oAcquire::AllowInsecureRepositories=true'
+
