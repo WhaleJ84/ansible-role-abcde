@@ -111,9 +111,9 @@
 
     - name: CONFIGURE | Ensure aliases directory is present
       ansible.builtin.file:
-        path: "{{ SHELL.ALIAS_DIR | dirname }}"
+        path: "{{ shell.alias_dir | dirname }}"
         state: directory
-      when: SHELL.ALIAS_DIR is defined
+      when: shell.alias_dir is defined
 
     - name: CONFIGURE | Ensure abcde aliases are configured
       with_dict: "{{ abcde_vars.aliases }}"
