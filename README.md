@@ -34,7 +34,7 @@ This example playbook shows how I would use this role, with custom variables to 
 - hosts: localhost
 
   roles:
-    role: whalej84.abcde
-    tags: [ abcde ]
+    - role: whalej84.abcde
+      tags: [ abcde ]
 ```
 
